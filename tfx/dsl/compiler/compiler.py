@@ -156,6 +156,10 @@ class Compiler:
 
     # Step 1: Node info
     node.node_info.type.name = tfx_node.type
+    if isinstance(tfx_node,
+                  base_component.BaseComponent) and tfx_node.type_annotation:
+      node.node_info.type.base_type = (
+          tfx_node.type_annotation.MLMD_SYSTEM_BASE_TYPE)
     node.node_info.id = tfx_node.id
 
     # Step 2: Node Context
